@@ -1,4 +1,4 @@
-# Homework #1: Functions
+# Homework #2: Functions
 
 To complete this assignment, do the following:
 
