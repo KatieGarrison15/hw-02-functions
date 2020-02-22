@@ -31,6 +31,42 @@ console.log('Problem 1:')
 
 // Add your code below this line
 
+function blackJack(playerCardScore, dealerCardScore){
+  // both over 21
+  if (playerCardScore > 21 && dealerCardScore > 21){
+    return 0
+  }
+  // Draw case
+  else if (playerCardScore===dealerCardScore){
+    return playerCardScore
+  }
+
+  // if dealer goes over
+  else if (dealerCardScore>21){
+    return playerCardScore
+  }
+
+  // if player goes over
+  else if (playerCardScore > 21){
+    return dealerCardScore
+  }
+
+  else if (playerCardScore > dealerCardScore){
+    return playerCardScore
+  }
+
+  else if (dealerCardScore > playerCardScore){
+    return dealerCardScore
+  }
+
+  else{
+    return "error"
+  }
+}
+
+const result1 = blackJack(19, 22)
+console.log(result1)
+
 // Add your code above this line
 
 /** added for formatting purposes **/
@@ -75,6 +111,64 @@ Use the following test cases to confirm your program meets the success criteria
 console.log('Problem 2:')
 
 // Add your code below this line
+function scrabbleScore(word){
+  const scoreTable = scrabbleTable()
+  // capitalize all letters
+  word = word.toUpperCase()
+  letters = word.split("")
+
+  let score = 0
+
+  letters.forEach((letter) => {
+    if(scoreTable[letter] !== undefined){
+      score = score + scoreTable[letter]
+    }
+  });
+  return score
+}
+
+function scrabbleTable(){
+  let table = {}
+  // 1 point - A, E, I, O, U, L, N, R, S, T
+  const onePoint = ['A','E','I','O','U','L','N','R','S','T']
+  onePoint.forEach((point) => {
+    table[point] = 1
+  });
+  // 2 point - D, G
+  const twoPoint = ['D','G']
+  twoPoint.forEach((point) => {
+    table[point] = 2
+  });
+  // 3 point - B, C, M, P
+  const threePoint = ['B','C','M','P']
+  threePoint.forEach((point) => {
+    table[point] = 3
+  });
+  // 4 point - F, H, V, W, Y
+  const fourPoint = ['F', 'H', 'V', 'W', 'Y']
+  fourPoint.forEach((point) => {
+    table[point] = 4
+  });
+  // 5 point - K
+  const fivePoint = ['K']
+  fivePoint.forEach((point) => {
+    table[point] = 5
+  });
+  // 8 point - J, X
+  const eightPoint = ['J','X']
+  eightPoint.forEach((point) => {
+    table[point] = 8
+  });
+  // 10 point - Q, Z
+  const tenPoint = ['Q','Z']
+  tenPoint.forEach((point) => {
+    table[point] = 10
+  })
+  return table
+}
+
+const result2 = scrabbleScore("function")
+console.log(result2)
 
 // Add your code above this line
 
@@ -115,6 +209,26 @@ console.log('Problem 3:')
 
 // Add your code below this line
 
+function isPalindrome(word){
+  // check word left to right
+  for(let i=0; i < word.length; i++){
+    // check word right to left
+    for(let j=word.length -1-i; j> word.length -2-i;j--){
+      if (word[i]!=word[j]){
+        return false
+      }
+
+      else if (word[i]===word[j] && i===j){
+        return true
+      }
+    }
+  }
+  return true
+}
+
+const result3 = isPalindrome("run")
+console.log(result3)
+
 // Add your code above this line
 
 /** added for formatting purposes **/
@@ -147,6 +261,27 @@ Use the following test cases to confirm your program meets the success criteria
 console.log('Problem 4:')
 
 // Add your code below this line
+
+function doubleLetters(word){
+  word = word.toLowerCase()
+  const letters = word.split("")
+  let counter = {}
+  let flag = false
+  letters.forEach((letter) => {
+    if(counter[letter] === undefined){
+      counter[letter] = 1
+    }
+    else {
+      counter[letter] += 1
+      flag = true
+    }
+  })
+  return flag
+}
+
+const result4 = doubleLetters("loop")
+console.log(result4)
+
 
 // Add your code above this line
 
@@ -208,6 +343,28 @@ console.log('Problem 5 - bonus:')
 
 // Add your code below this line
 
+function wordCount(phrase){
+  phrase = phrase.toLowerCase()
+  const words = phrase.split(" ")
+  let counter = {}
+
+  // remove lasta character of word if it punctuation
+  words.forEach((word) => {
+    if(word[word.length-1]=== '!' || word[word.length-1]=== '.' || word[word.length-1]=== ',' || word[word.length-1]=== '?'){
+      word = word.substring(0,word.length-1)
+    }
+    if(counter[word] !== undefined){
+      counter[word] += 1
+    }
+    else {
+      counter[word] = 1
+    }
+  })
+  return counter
+}
+
+const result5 = wordCount("Baby shark, doo doo doo doo doo doo")
+console.log(result5)
 // Add your code above this line
 
 /** added for formatting purposes **/
